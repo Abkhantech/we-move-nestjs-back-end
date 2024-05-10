@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm ci
+  pre_build:
+    commands:
+      - echo Running migrations...
+      - npm run typeorm migration:run
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    - '**/*'
